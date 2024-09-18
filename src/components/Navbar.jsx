@@ -1,14 +1,16 @@
 import "./Navbar.css";
-import "./lang.svg";
+
 function Navbar() {
   return (
-    <div className="bg-zinc-600 p-6 flex justify-between shadow-md">
-      {" "}
-      <h1 className="text-white text-4xl inria-sans-bold">Comics</h1>
-      <div className="flex justify-around items-center gap-28 text-white text-xl inter ">
+    <div className="bg-zinc-600 p-6 md:flex flex-wrap md:justify-between shadow-md">
+      <h1 className="text-white text-3xl sm:text-4xl inria-sans-bold mb-4 md:mb-0">
+        Comics
+      </h1>
+
+      <div className="flex flex-col sm:flex-row justify-around items-center gap-4 sm:gap-8 md:gap-28 text-white text-lg sm:text-xl inter">
         <input
           type="text"
-          className="rounded-2xl text-md py-1 px-4 border-2 border-zinc-400"
+          className="rounded-2xl text-md py-1 px-4 border-2 border-zinc-400 w-full sm:w-auto"
           placeholder="Find_"
         />
         <div className="hover:text-gray-300 active:text-gray-500">
@@ -31,4 +33,5 @@ function Navbar() {
     </div>
   );
 }
+
 export default Navbar;
