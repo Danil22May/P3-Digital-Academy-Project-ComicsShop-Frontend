@@ -3,7 +3,7 @@ import "./Navbar.css";
 function Navbar() {
   return (
     <div className="bg-zinc-600 p-6 md:flex flex-wrap md:justify-between shadow-md">
-      <h1 className="text-white text-3xl sm:text-4xl inria-sans-bold mb-4 md:mb-0">
+      <h1 className="text-white text-3xl sm:text-4xl inria-sans-bold mb-4 md:mb-0 cursor-pointer">
         Comics
       </h1>
 
@@ -13,12 +13,16 @@ function Navbar() {
           className="rounded-2xl text-md py-1 px-4 border-2 border-zinc-400 w-full sm:w-auto"
           placeholder="Find_"
         />
-        <div className="hover:text-gray-300 active:text-gray-500">
+        <div className="hover:text-gray-300 active:text-gray-500 cursor-pointer">
           Categories
         </div>
-        <div className="hover:text-gray-300 active:text-gray-500">Login</div>
-        <div className="hover:text-gray-300 active:text-gray-500">Cart</div>
-        <div className="bg-zinc-400 rounded-md p-2 hover:bg-zinc-500 active:bg-zinc-700">
+        <div className="hover:text-gray-300 active:text-gray-500 cursor-pointer">
+          Login
+        </div>
+        <div className="hover:text-gray-300 active:text-gray-500 cursor-pointer">
+          Cart
+        </div>
+        <div className="bg-zinc-400 rounded-md p-2 hover:bg-zinc-500 active:bg-zinc-700 cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="#ffffff"
