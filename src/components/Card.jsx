@@ -4,7 +4,7 @@ import image from "./comics_batman.jpg";
 
 export default function Card({ name, price }) {
   return (
-    <div className="mt-3 border-4 w-full md:w-96 h-auto md:h-64 rounded-2xl flex flex-col md:flex-row hover:shadow-md transition-shadow overflow-hidden">
+    <div className="mt-3 bg-white border-4 border-gray-300 w-full md:w-96 h-auto md:h-64 rounded-2xl flex flex-col md:flex-row hover:shadow-md transition-shadow overflow-hidden">
       <div className="flex flex-col p-4 md:pt-4 md:px-6">
         <h1 className="font-semibold inter text-xl md:text-2xl">{name}</h1>
         <div className="italic text-xs md:text-sm mt-2">

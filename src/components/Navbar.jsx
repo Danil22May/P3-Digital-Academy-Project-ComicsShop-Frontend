@@ -2,7 +2,7 @@ import "./Navbar.css";
 
 function Navbar() {
   return (
-    <div className="bg-zinc-600 p-6 md:flex flex-wrap md:justify-between shadow-md">
+    <div className="bg-zinc-600 p-6 px-14 md:flex flex-wrap md:justify-between shadow-md">
       <h1 className="text-white text-3xl sm:text-4xl inria-sans-bold mb-4 md:mb-0 cursor-pointer">
         Comics
       </h1>
@@ -16,11 +16,37 @@ function Navbar() {
         <div className="hover:text-gray-300 active:text-gray-500 cursor-pointer">
           Categories
         </div>
-        <div className="hover:text-gray-300 active:text-gray-500 cursor-pointer">
-          Login
+        <div className="hover:text-gray-300 flex justify-center items-center active:text-gray-500 cursor-pointer">
+          Login{" "}
+          <svg
+            width="26px"
+            height="26px"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+          >
+            <path
+              stroke="#ffffff"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1"
+              d="m15 12-4-4m4 4-4 4m4-4H5m5 9a9 9 0 1 0 0-18"
+            />
+          </svg>
         </div>
         <div className="hover:text-gray-300 active:text-gray-500 cursor-pointer">
-          Cart
+          <svg
+            width="40px"
+            height="40px"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6.29977 5H21L19 12H7.37671M20 16H8L6 3H3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z"
+              stroke="#ffffff"
+            />
+          </svg>
         </div>
         <div className="bg-zinc-400 rounded-md p-2 hover:bg-zinc-500 active:bg-zinc-700 cursor-pointer">
           <svg
