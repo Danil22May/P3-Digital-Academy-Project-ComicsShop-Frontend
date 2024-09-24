@@ -1,10 +1,11 @@
 import "./Navbar.css";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
     <div className="flex-wrap bg-zinc-600 p-6 px-14 shadow-md md:flex md:justify-between">
       <h1 className="inria-sans-bold mb-4 cursor-pointer text-3xl text-white sm:text-4xl md:mb-0">
-        Comics
+        <Link to="/">Comics</Link>
       </h1>
 
       <div className="inter flex flex-col items-center justify-around gap-4 text-lg text-white sm:flex-row sm:gap-8 sm:text-xl md:gap-28">
@@ -14,10 +15,10 @@ function Navbar() {
           placeholder="Find_"
         />
         <div className="cursor-pointer hover:text-gray-300 active:text-gray-500">
-          Categories
+          <Link to="/categories">Categories</Link>
         </div>
         <div className="flex cursor-pointer items-center justify-center hover:text-gray-300 active:text-gray-500">
-          Login{" "}
+          <Link to="/login">Login</Link>
           <svg
             width="26px"
             height="26px"

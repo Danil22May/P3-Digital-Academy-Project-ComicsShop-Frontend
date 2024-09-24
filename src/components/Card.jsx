@@ -2,24 +2,27 @@
 
 import image from "./comics_batman.jpg";
 
-export default function Card({ name, price }) {
+export default function Card({ name, price, id }) {
   return (
-    <div className="mt-3 bg-white border-4 border-gray-300 w-full md:w-96 h-auto md:h-64 rounded-2xl flex flex-col md:flex-row hover:shadow-md transition-shadow overflow-hidden">
-      <div className="flex flex-col p-4 md:pt-4 md:px-6">
-        <h1 className="font-semibold inter text-xl md:text-2xl">{name}</h1>
-        <div className="italic text-xs md:text-sm mt-2">
+    <div className="mt-3 flex h-auto w-full flex-col overflow-hidden rounded-2xl border-4 border-gray-300 bg-white transition-shadow hover:shadow-md md:h-64 md:w-96 md:flex-row">
+      <div className="flex flex-col p-4 md:px-6 md:pt-4">
+        <h1 className="inter text-xl font-semibold md:text-2xl">{name}</h1>
+        <div className="mt-2 text-xs italic md:text-sm">
           A 1990 comics about Batman
         </div>
-        <h1 className="font-semibold inter text-xl md:text-2xl mt-4">
+        <h1 className="inter mt-4 text-xl font-semibold md:text-2xl">
           {price} €
         </h1>
-        <div className="flex justify-start md:justify-around mt-4 w-full md:w-40 gap-2 md:gap-1">
-          <button className="border rounded-xl text-xs md:text-sm border-blue-400 p-2 text-blue-400 hover:bg-blue-400 hover:text-white transition-colors">
+        <div className="mt-4 flex w-full justify-start gap-2 md:w-40 md:justify-around md:gap-1">
+          <button className="rounded-xl border border-blue-400 p-2 text-xs text-blue-400 transition-colors hover:bg-blue-400 hover:text-white md:text-sm">
             Add to Cart
           </button>
-          <button className="border rounded-xl border-yellow-400 p-2 text-yellow-400 hover:bg-yellow-400 hover:text-white transition-colors">
+          <a
+            href={"/product?id=" + id}
+            className="pointer rounded-xl border border-yellow-400 p-2 text-yellow-400 transition-colors hover:bg-yellow-400 hover:text-white"
+          >
             More
-          </button>
+          </a>
         </div>
       </div>
       <img src={image} alt="image" className="h-40 object-cover md:h-auto" />

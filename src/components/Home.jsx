@@ -23,7 +23,12 @@ export default function Home() {
       <hr className="mx-auto my-10 w-96 border-2" />
       <div className="m-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:m-10 xl:grid-cols-3 2xl:grid-cols-4">
         {products.map((product) => (
-          <Card key={product.id} name={product.name} price={product.price} />
+          <Card
+            key={product.id}
+            name={product.name}
+            price={product.price}
+            id={product.id}
+          />
         ))}
       </div>
       <hr className="mx-auto my-10 w-96 border-2" />
