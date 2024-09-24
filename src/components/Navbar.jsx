@@ -11,7 +11,7 @@ function Navbar() {
       <div className="inter flex flex-col items-center justify-around gap-4 text-lg text-white sm:flex-row sm:gap-8 sm:text-xl md:gap-28">
         <input
           type="text"
-          className="text-md w-full rounded-2xl border-2 border-zinc-400 px-4 py-1 sm:w-auto"
+          className="text-md w-full rounded-2xl border-2 border-zinc-400 px-4 py-1 font-normal text-gray-500 outline-none sm:w-auto"
           placeholder="Find_"
         />
         <div className="cursor-pointer hover:text-gray-300 active:text-gray-500">
