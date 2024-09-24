@@ -2,6 +2,8 @@ import Card from "./Card";
 import Carousel from "./Carousel";
 import Pagination from "./Pagination";
 import Footer from "./Footer";
+import Newsletters from "./Newsletters";
+import OfferButton from "./OfferButton";
 
 export default function Home() {
   const products = [
@@ -18,15 +20,24 @@ export default function Home() {
   return (
     <>
       <Carousel />
-      <hr className="w-96 border-2 mx-auto my-10" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 m-4 md:m-10">
+      <hr className="mx-auto my-10 w-96 border-2" />
+      <div className="m-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:m-10 xl:grid-cols-3 2xl:grid-cols-4">
         {products.map((product) => (
           <Card key={product.id} name={product.name} price={product.price} />
         ))}
       </div>
-      <hr className="w-96 border-2 mx-auto my-10" />
-      <div className="flex justify-center">
-        <Pagination />
+      <hr className="mx-auto my-10 w-96 border-2" />
+      <div className="mx-10 justify-around md:flex">
+        <div className="flex flex-1 justify-center md:ml-44">
+          <Pagination />
+        </div>
+        <div className="flex items-center justify-center gap-2">
+          <OfferButton text={"NEW"} />
+          <OfferButton text={"SALES"} />
+        </div>
+      </div>
+      <div className="mx-10 my-5">
+        <Newsletters />
       </div>
       <Footer />
     </>

@@ -2,21 +2,21 @@ import "./Navbar.css";
 
 function Navbar() {
   return (
-    <div className="bg-zinc-600 p-6 px-14 md:flex flex-wrap md:justify-between shadow-md">
-      <h1 className="text-white text-3xl sm:text-4xl inria-sans-bold mb-4 md:mb-0 cursor-pointer">
+    <div className="flex-wrap bg-zinc-600 p-6 px-14 shadow-md md:flex md:justify-between">
+      <h1 className="inria-sans-bold mb-4 cursor-pointer text-3xl text-white sm:text-4xl md:mb-0">
         Comics
       </h1>
 
-      <div className="flex flex-col sm:flex-row justify-around items-center gap-4 sm:gap-8 md:gap-28 text-white text-lg sm:text-xl inter">
+      <div className="inter flex flex-col items-center justify-around gap-4 text-lg text-white sm:flex-row sm:gap-8 sm:text-xl md:gap-28">
         <input
           type="text"
-          className="rounded-2xl text-md py-1 px-4 border-2 border-zinc-400 w-full sm:w-auto"
+          className="text-md w-full rounded-2xl border-2 border-zinc-400 px-4 py-1 sm:w-auto"
           placeholder="Find_"
         />
-        <div className="hover:text-gray-300 active:text-gray-500 cursor-pointer">
+        <div className="cursor-pointer hover:text-gray-300 active:text-gray-500">
           Categories
         </div>
-        <div className="hover:text-gray-300 flex justify-center items-center active:text-gray-500 cursor-pointer">
+        <div className="flex cursor-pointer items-center justify-center hover:text-gray-300 active:text-gray-500">
           Login{" "}
           <svg
             width="26px"
@@ -34,7 +34,7 @@ function Navbar() {
             />
           </svg>
         </div>
-        <div className="hover:text-gray-300 active:text-gray-500 cursor-pointer">
+        <div className="cursor-pointer hover:text-gray-300 active:text-gray-500">
           <svg
             width="40px"
             height="40px"
@@ -48,7 +48,7 @@ function Navbar() {
             />
           </svg>
         </div>
-        <div className="bg-zinc-400 rounded-md p-2 hover:bg-zinc-500 active:bg-zinc-700 cursor-pointer">
+        <div className="cursor-pointer rounded-md bg-zinc-400 p-2 hover:bg-zinc-500 active:bg-zinc-700">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="#ffffff"
