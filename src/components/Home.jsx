@@ -1,7 +1,6 @@
 import Card from "./Card";
 import Carousel from "./Carousel";
 import Pagination from "./Pagination";
-import Footer from "./Footer";
 import Newsletters from "./Newsletters";
 import OfferButton from "./OfferButton";
 
@@ -44,7 +43,6 @@ export default function Home() {
       <div className="mx-10 my-5">
         <Newsletters />
       </div>
-      <Footer />
     </>
   );
 }

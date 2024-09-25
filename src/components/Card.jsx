@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-
 import image from "./comics_batman.jpg";
 
 export default function Card({ name, price, id }) {
@@ -11,7 +10,7 @@ export default function Card({ name, price, id }) {
           A 1990 comics about Batman
         </div>
         <h1 className="inter mt-4 text-xl font-semibold md:text-2xl">
-          {price} €
+          {price}€
         </h1>
         <div className="mt-4 flex w-full justify-start gap-2 md:w-40 md:justify-around md:gap-1">
           <button className="rounded-xl border border-blue-400 p-2 text-xs text-blue-400 transition-colors hover:bg-blue-400 hover:text-white md:text-sm">

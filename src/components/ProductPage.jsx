@@ -1,6 +1,18 @@
 import { useState } from "react";
+import Card from "./Card";
+import image from "./comics_batman.jpg";
 
 const ProductPage = () => {
+  const products = [
+    { id: 1, name: "Batman", price: 90 },
+    { id: 2, name: "Spider-Man", price: 78 },
+    { id: 3, name: "Spider-Man", price: 78 },
+    { id: 4, name: "Spider-Man", price: 78 },
+    { id: 5, name: "Spider-Man", price: 78 },
+    { id: 6, name: "Spider-Man", price: 78 },
+    { id: 7, name: "Spider-Man", price: 78 },
+    { id: 8, name: "Spider-Man", price: 78 },
+  ];
   const [quantity, setQuantity] = useState(1);
 
   const product = {
@@ -18,18 +30,13 @@ const ProductPage = () => {
     setQuantity(Math.max(1, parseInt(e.target.value) || 1));
   };
 
-  const handleAddToCart = () => {
-    console.log(`Added ${quantity} of ${product.name} to cart`);
-    // Implement actual add to cart logic here
-  };
-
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container m-10 mx-auto border-4 px-4 py-8 md:my-24">
       <div className="-mx-4 flex flex-col md:flex-row">
         <div className="mb-4 px-4 md:mb-0 md:flex-1">
           <div className="mb-4 rounded-lg bg-gray-100">
             <img
-              src={product.image}
+              src={image}
               alt={product.name}
               className="h-64 w-full rounded-lg object-cover md:h-80"
             />
@@ -90,13 +97,21 @@ const ProductPage = () => {
               />
             </div>
           </div>
-          <button
-            onClick={handleAddToCart}
-            className="rounded-md bg-indigo-600 px-4 py-2 text-white transition-colors hover:bg-indigo-700"
-          >
+          <button className="rounded-md bg-indigo-600 px-4 py-2 text-white transition-colors hover:bg-indigo-700">
             Añadir al carrito
           </button>
         </div>
+      </div>
+      <h1 className="mt-10 text-center text-2xl">Otros productos</h1>
+      <div className="m-4 mt-6 xl:grid xl:grid-cols-3">
+        {products.map((product) => (
+          <Card
+            key={product.id}
+            name={product.name}
+            price={product.price}
+            id={product.id}
+          />
+        ))}
       </div>
     </div>
   );
