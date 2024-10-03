@@ -21,9 +21,9 @@ const ProductPage = () => {
     description:
       "Batman: The Killing Joke es una novela gráfica de Batman escrita por Alan Moore e ilustrada por Brian Bolland. Publicada por DC Comics en 1988, la historia ha sido aclamada por la crítica por su profundidad psicológica y su controvertido tratamiento del Joker.",
     image: "/placeholder.svg?height=400&width=300",
-    category: "DC Comics",
+    category: "DC",
     stock: 50,
-    rating: 4.8,
+    rating: 3,
   };
 
   const handleQuantityChange = (e) => {
@@ -31,7 +31,7 @@ const ProductPage = () => {
   };
 
   return (
-    <div className="container m-10 mx-auto border-4 px-4 py-8 md:my-24">
+    <div className="container m-10 mx-auto px-4 py-8 md:my-24">
       <div className="-mx-4 flex flex-col md:flex-row">
         <div className="mb-4 px-4 md:mb-0 md:flex-1">
           <div className="mb-4 rounded-lg bg-gray-100">
