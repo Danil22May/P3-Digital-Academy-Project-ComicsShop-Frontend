@@ -3,6 +3,7 @@ import { storage } from "../firebase.jsx";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const UploadForm = () => {
+  const [created, setCreated] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -54,16 +55,19 @@ const UploadForm = () => {
       body: JSON.stringify(productData),
     })
       .then((response) => response.json())
-      .then((data) => console.log("Product created:", data))
+      .then((data) => {
+        console.log("Product created:", data);
+        setCreated(true);
+      })
       .catch((error) => console.error("Error:", error));
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="mx-auto max-w-md rounded-lg border border-gray-600 p-4 shadow-lg"
+      className="mx-auto max-w-md rounded-lg border border-gray-400 bg-white p-4 text-gray-700 shadow-lg"
     >
-      <h2 className="mb-4 text-xl font-bold">Upload New Product</h2>
+      <h2 className="inter mb-4 text-xl font-bold">Gestion de Productos</h2>
 
       <input
         type="text"
@@ -113,6 +117,7 @@ const UploadForm = () => {
         name="stars"
         placeholder="Stars"
         step="0.1"
+        max="5.0"
         value={formData.stars}
         onChange={handleChange}
         required
@@ -132,7 +137,6 @@ const UploadForm = () => {
         name="image2"
         accept="image/*"
         onChange={handleChange}
-        required
         className="mb-4"
       />
 
@@ -142,6 +146,11 @@ const UploadForm = () => {
       >
         Upload Product
       </button>
+      {created ? (
+        <h1 className="p-7 text-center text-2xl font-semibold text-green-600">
+          Product created
+        </h1>
+      ) : null}
     </form>
   );
 };

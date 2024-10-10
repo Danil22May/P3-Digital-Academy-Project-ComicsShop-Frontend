@@ -1,8 +1,8 @@
 const API_URL = "http://localhost:8080/api/v1/product";
 
-export const createProduct = async (productData) => {
+export const createProduct = async (productData, httpMethod) => {
   const response = await fetch(API_URL, {
-    method: "POST",
+    method: httpMethod,
     headers: {
       "Content-Type": "application/json",
     },

@@ -1,10 +1,7 @@
 import Card from "./Card";
-import Carousel from "./Carousel";
-import Pagination from "./Pagination";
-import Newsletters from "./Newsletters";
-import OfferButton from "./OfferButton";
+import UploadForm from "./UploadForm";
 
-export default function Home() {
+function AdminPage() {
   const products = [
     { id: 1, name: "Batman", price: 90 },
     { id: 2, name: "Spider-Man", price: 78 },
@@ -15,11 +12,12 @@ export default function Home() {
     { id: 7, name: "Spider-Man", price: 78 },
     { id: 8, name: "Spider-Man", price: 78 },
   ];
-
   return (
-    <>
-      <Carousel />
-      <hr className="mx-auto my-10 w-96 border-2" />
+    <div className="">
+      <h2 className="inter m-10 p-2 text-center text-2xl font-light">
+        Panel de Administracion
+      </h2>
+      <UploadForm />
       <div className="m-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:m-10 xl:grid-cols-3 2xl:grid-cols-4">
         {products.map((product) => (
           <Card
@@ -30,19 +28,8 @@ export default function Home() {
           />
         ))}
       </div>
-      <hr className="mx-auto my-10 w-96 border-2" />
-      <div className="mx-10 justify-around md:flex">
-        <div className="flex flex-1 justify-center md:ml-44">
-          <Pagination />
-        </div>
-        <div className="flex items-center justify-center gap-2">
-          <OfferButton text={"NEW"} />
-          <OfferButton text={"SALES"} />
-        </div>
-      </div>
-      <div className="mx-10 my-5">
-        <Newsletters />
-      </div>
-    </>
+    </div>
   );
 }
+
+export default AdminPage;
