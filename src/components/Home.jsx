@@ -3,6 +3,7 @@ import Carousel from "./Carousel";
 import Pagination from "./Pagination";
 import Newsletters from "./Newsletters";
 import OfferButton from "./OfferButton";
+import UploadForm from "./UploadForm";
 
 export default function Home() {
   const products = [
@@ -19,6 +20,7 @@ export default function Home() {
   return (
     <>
       <Carousel />
+      <UploadForm />
       <hr className="mx-auto my-10 w-96 border-2" />
       <div className="m-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:m-10 xl:grid-cols-3 2xl:grid-cols-4">
         {products.map((product) => (
