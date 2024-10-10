@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import image from "./comics_batman.jpg";
 
-export default function Card({ name, price, id }) {
+export default function Card({ name, price, id, img }) {
   return (
     <div className="mt-3 flex h-auto w-full flex-col overflow-hidden rounded-2xl border-4 border-gray-300 bg-white transition-shadow hover:shadow-md md:h-64 md:w-96 md:flex-row">
       <div className="flex flex-col p-4 md:px-6 md:pt-4">
@@ -24,7 +24,7 @@ export default function Card({ name, price, id }) {
           </a>
         </div>
       </div>
-      <img src={image} alt="image" className="h-40 object-cover md:h-auto" />
+      <img src={img} alt="image" className="h-40 object-cover md:h-auto" />
     </div>
   );
 }

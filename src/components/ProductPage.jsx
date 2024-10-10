@@ -1,34 +1,44 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "./Card";
 import image from "./comics_batman.jpg";
+import { useSearchParams } from "react-router-dom";
 
 const ProductPage = () => {
-  const products = [
-    { id: 1, name: "Batman", price: 90 },
-    { id: 2, name: "Spider-Man", price: 78 },
-    { id: 3, name: "Spider-Man", price: 78 },
-    { id: 4, name: "Spider-Man", price: 78 },
-    { id: 5, name: "Spider-Man", price: 78 },
-    { id: 6, name: "Spider-Man", price: 78 },
-    { id: 7, name: "Spider-Man", price: 78 },
-    { id: 8, name: "Spider-Man", price: 78 },
-  ];
   const [quantity, setQuantity] = useState(1);
-
-  const product = {
-    name: "Batman: The Killing Joke",
-    price: 19.99,
-    description:
-      "Batman: The Killing Joke es una novela gráfica de Batman escrita por Alan Moore e ilustrada por Brian Bolland. Publicada por DC Comics en 1988, la historia ha sido aclamada por la crítica por su profundidad psicológica y su controvertido tratamiento del Joker.",
-    image: "/placeholder.svg?height=400&width=300",
-    category: "DC",
-    stock: 50,
-    rating: 3,
-  };
+  const [searchParams] = useSearchParams();
+  const productId = searchParams.get("id");
+  const [product, setProduct] = useState(null); // null по умолчанию для проверки загрузки
 
   const handleQuantityChange = (e) => {
     setQuantity(Math.max(1, parseInt(e.target.value) || 1));
   };
+
+  const fetchProduct = async () => {
+    const response = await fetch(
+      `http://localhost:8080/api/v1/product?id=${productId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch product");
+    }
+
+    const newProduct = await response.json();
+    setProduct(newProduct);
+  };
+
+  useEffect(() => {
+    fetchProduct();
+  }, [productId]);
+
+  if (!product) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="container m-10 mx-auto px-4 py-8 md:my-24">
@@ -36,7 +46,7 @@ const ProductPage = () => {
         <div className="mb-4 px-4 md:mb-0 md:flex-1">
           <div className="mb-4 rounded-lg bg-gray-100">
             <img
-              src={image}
+              src={product.imageUrl1}
               alt={product.name}
               className="h-64 w-full rounded-lg object-cover md:h-80"
             />
@@ -48,7 +58,7 @@ const ProductPage = () => {
           <div className="mb-4 flex">
             <div className="mr-4">
               <span className="text-3xl font-bold text-indigo-600">
-                ${product.price.toFixed(2)}
+                €{product.price.toFixed(2)}
               </span>
             </div>
             <div>
@@ -76,7 +86,7 @@ const ProductPage = () => {
                 </svg>
               ))}
               <span className="ml-2 text-gray-600">
-                {product.rating.toFixed(1)}
+                {product.stars.toFixed(1)}
               </span>
             </div>
           </div>
@@ -103,7 +113,7 @@ const ProductPage = () => {
         </div>
       </div>
       <h1 className="mt-10 text-center text-2xl">Otros productos</h1>
-      <div className="m-4 mt-6 xl:grid xl:grid-cols-3">
+      {/* <div className="m-4 mt-6 xl:grid xl:grid-cols-3">
         {products.map((product) => (
           <Card
             key={product.id}
@@ -112,7 +122,7 @@ const ProductPage = () => {
             id={product.id}
           />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

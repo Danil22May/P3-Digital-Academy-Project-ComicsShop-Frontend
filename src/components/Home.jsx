@@ -3,18 +3,37 @@ import Carousel from "./Carousel";
 import Pagination from "./Pagination";
 import Newsletters from "./Newsletters";
 import OfferButton from "./OfferButton";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  const products = [
-    { id: 1, name: "Batman", price: 90 },
-    { id: 2, name: "Spider-Man", price: 78 },
-    { id: 3, name: "Spider-Man", price: 78 },
-    { id: 4, name: "Spider-Man", price: 78 },
-    { id: 5, name: "Spider-Man", price: 78 },
-    { id: 6, name: "Spider-Man", price: 78 },
-    { id: 7, name: "Spider-Man", price: 78 },
-    { id: 8, name: "Spider-Man", price: 78 },
-  ];
+  const [products, setProducts] = useState(null);
+  const fetchProduct = async () => {
+    const response = await fetch(
+      `http://localhost:8080/api/v1/products?page=0&limit=10`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch product");
+    }
+
+    const newProduct = await response.json();
+    setProducts(newProduct.content);
+    console.log(products);
+  };
+
+  useEffect(() => {
+    fetchProduct().then((result) => console.log(result));
+  }, []);
+
+  if (!products) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -27,6 +46,7 @@ export default function Home() {
             name={product.name}
             price={product.price}
             id={product.id}
+            img={product.imageUrl1}
           />
         ))}
       </div>

@@ -25,6 +25,7 @@ function AdminPage() {
             name={product.name}
             price={product.price}
             id={product.id}
+            img={product.imageUrl1}
           />
         ))}
       </div>
