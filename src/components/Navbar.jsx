@@ -1,7 +1,22 @@
+import { useState } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 
 function Navbar() {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleVoiceSearch = () => {
+    const recognition = new (window.SpeechRecognition ||
+      window.webkitSpeechRecognition)();
+    recognition.lang = "en-US";
+    recognition.interimResults = false;
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      setSearchQuery(transcript);
+    };
+    recognition.start();
+  };
   return (
     <div className="flex-wrap bg-gradient-to-l from-zinc-500 to-yellow-900 p-6 px-14 shadow-md md:flex md:justify-between">
       <h1 className="inria-sans-bold mb-4 cursor-pointer text-3xl text-white sm:text-4xl md:mb-0">
@@ -9,11 +24,20 @@ function Navbar() {
       </h1>
 
       <div className="inter flex flex-col items-center justify-around gap-4 text-lg text-white sm:flex-row sm:gap-8 sm:text-xl md:gap-28">
-        <input
-          type="text"
-          className="text-md w-full rounded-2xl border-2 border-zinc-400 px-4 py-1 font-normal text-gray-500 outline-none sm:w-auto"
-          placeholder="Find_"
-        />
+        <div className="relative">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="text-md w-full rounded-2xl border-2 border-zinc-400 px-4 py-1 font-normal text-gray-500 outline-none sm:w-auto"
+            placeholder="Find_"
+          />
+          <button
+            onClick={handleVoiceSearch}
+            className="absolute bottom-3 right-3 rounded-md bg-rose-700 p-2 hover:bg-rose-800 active:bg-zinc-700"
+          />
+        </div>
+
         <div className="cursor-pointer hover:text-gray-300 active:text-gray-500">
           <Link to="/categories">Categories</Link>
         </div>
