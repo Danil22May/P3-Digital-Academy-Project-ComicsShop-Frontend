@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <div className="flex-wrap bg-zinc-600 p-6 px-14 shadow-md md:flex md:justify-between">
+    <div className="flex-wrap bg-gradient-to-l from-zinc-500 to-yellow-900 p-6 px-14 shadow-md md:flex md:justify-between">
       <h1 className="inria-sans-bold mb-4 cursor-pointer text-3xl text-white sm:text-4xl md:mb-0">
         <Link to="/">Comics</Link>
       </h1>

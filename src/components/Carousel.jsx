@@ -17,14 +17,14 @@ export default function Carousel() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000);
+    }, 10000);
 
     return () => clearInterval(interval);
   }, []);
 
   const handlePrevious = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1,
     );
   };
 
@@ -33,7 +33,7 @@ export default function Carousel() {
   };
 
   return (
-    <div className="border-4 border-gray-300 my-10 sm:m-10 relative w-90 h-44 overflow-hidden rounded-xl shadow">
+    <div className="w-90 relative my-10 h-44 overflow-hidden rounded-xl border-4 border-gray-300 shadow sm:m-10">
       <div
         className="flex transition-transform duration-500"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -42,25 +42,25 @@ export default function Carousel() {
           <a
             href={href[index]}
             target="_blank"
-            className="w-full h-full flex-shrink-0 z-0"
+            className="z-0 h-full w-full flex-shrink-0"
             key={index}
           >
             <img
               src={src}
               alt={`Slide ${index + 1}`}
-              className="w-full object-cover z-0"
+              className="z-0 w-full object-cover"
             />
           </a>
         ))}
       </div>
       <button
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow"
+        className="absolute left-4 top-1/2 -translate-y-1/2 transform rounded-full bg-white p-2 shadow"
         onClick={handlePrevious}
       >
         &lt;
       </button>
       <button
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow"
+        className="absolute right-4 top-1/2 -translate-y-1/2 transform rounded-full bg-white p-2 shadow"
         onClick={handleNext}
       >
         &gt;

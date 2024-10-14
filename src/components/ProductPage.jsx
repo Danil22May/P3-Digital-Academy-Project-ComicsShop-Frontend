@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Card from "./Card";
-import image from "./comics_batman.jpg";
 import { useSearchParams } from "react-router-dom";
 
 const ProductPage = () => {
@@ -30,6 +29,7 @@ const ProductPage = () => {
 
     const newProduct = await response.json();
     setProduct(newProduct);
+    console.log(newProduct);
   };
 
   useEffect(() => {
@@ -78,7 +78,7 @@ const ProductPage = () => {
               {[...Array(5)].map((_, i) => (
                 <svg
                   key={i}
-                  className={`h-5 w-5 ${i < Math.floor(product.rating) ? "text-yellow-400" : "text-gray-300"}`}
+                  className={`h-5 w-5 ${i < Math.floor(product.stars) ? "text-yellow-400" : "text-gray-300"}`}
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >

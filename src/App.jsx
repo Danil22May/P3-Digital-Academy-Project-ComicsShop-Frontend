@@ -12,7 +12,7 @@ import { AuthProvider } from "./AuthContext";
 function App() {
   return (
     <AuthProvider>
-      <div className="min-h-screen bg-gray-100">
+      <div className="min-h-screen bg-slate-50">
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} />

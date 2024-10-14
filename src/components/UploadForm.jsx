@@ -4,6 +4,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const UploadForm = () => {
   const [created, setCreated] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -34,6 +35,7 @@ const UploadForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const image1URL = await uploadImage(formData.image1);
     const image2URL = await uploadImage(formData.image2);
@@ -42,6 +44,7 @@ const UploadForm = () => {
       name: formData.name,
       description: formData.description,
       category: formData.category,
+      stars: formData.stars,
       price: parseFloat(formData.price),
       imageUrl1: image1URL,
       imageUrl2: image2URL,
@@ -57,7 +60,11 @@ const UploadForm = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Product created:", data);
+        setIsLoading(false);
         setCreated(true);
+        setTimeout(() => {
+          setCreated(false);
+        }, 5000);
       })
       .catch((error) => console.error("Error:", error));
   };
@@ -65,9 +72,11 @@ const UploadForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mx-auto max-w-md rounded-lg border border-gray-400 bg-white p-4 text-gray-700 shadow-lg"
+      className="mx-auto max-w-md rounded-lg border border-gray-300 bg-white p-4 text-gray-700 shadow-lg"
     >
-      <h2 className="inter mb-4 text-xl font-bold">Gestion de Productos</h2>
+      <h2 className="inter mb-4 text-xl font-bold text-gray-600">
+        Gestion de Productos
+      </h2>
 
       <input
         type="text"
@@ -76,7 +85,7 @@ const UploadForm = () => {
         value={formData.name}
         onChange={handleChange}
         required
-        className="mb-4 w-full rounded border border-gray-400 p-2"
+        className="mb-4 w-full rounded border border-gray-300 p-2"
       />
 
       <textarea
@@ -85,7 +94,7 @@ const UploadForm = () => {
         value={formData.description}
         onChange={handleChange}
         required
-        className="mb-4 w-full rounded border border-gray-400 p-2"
+        className="mb-4 w-full rounded border border-gray-300 p-2"
       />
 
       <select
@@ -93,7 +102,7 @@ const UploadForm = () => {
         value={formData.category}
         onChange={handleChange}
         required
-        className="mb-4 w-full rounded border border-gray-400 p-2"
+        className="mb-4 w-full rounded border border-gray-300 p-2 text-gray-400"
       >
         <option value="">Select Category</option>
         {categories.map((category) => (
@@ -110,7 +119,7 @@ const UploadForm = () => {
         value={formData.price}
         onChange={handleChange}
         required
-        className="mb-4 w-full rounded border border-gray-400 p-2"
+        className="mb-4 w-full rounded border border-gray-300 p-2"
       />
       <input
         type="number"
@@ -121,7 +130,7 @@ const UploadForm = () => {
         value={formData.stars}
         onChange={handleChange}
         required
-        className="mb-4 w-full rounded border border-gray-400 p-2"
+        className="mb-4 w-full rounded border border-gray-300 p-2"
       />
 
       <input
@@ -137,18 +146,23 @@ const UploadForm = () => {
         name="image2"
         accept="image/*"
         onChange={handleChange}
-        className="mb-4"
+        className="mb-4 border-gray-300"
       />
 
       <button
         type="submit"
-        className="w-full rounded bg-blue-500 p-2 text-white transition duration-200 hover:bg-blue-600"
+        className="my-2 rounded bg-blue-400 p-2 text-white transition duration-200 hover:bg-blue-600"
       >
         Upload Product
       </button>
       {created ? (
         <h1 className="p-7 text-center text-2xl font-semibold text-green-600">
           Product created
+        </h1>
+      ) : null}
+      {isLoading ? (
+        <h1 className="p-7 text-center text-2xl font-semibold text-yellow-600">
+          Loading . . .
         </h1>
       ) : null}
     </form>
