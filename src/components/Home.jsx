@@ -7,9 +7,13 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [products, setProducts] = useState(null);
+  const [page, setPage] = useState(1);
+  const handlePage = (newPage) => {
+    setPage(newPage);
+  };
   const fetchProduct = async () => {
     const response = await fetch(
-      `http://localhost:8080/api/v1/products?page=0&limit=100`,
+      `http://localhost:8080/api/v1/products?page=${page}&limit=8`,
       {
         method: "GET",
         headers: {
@@ -29,7 +33,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchProduct().then((result) => console.log(result));
-  }, []);
+  }, [page]);
 
   if (!products) {
     return <div className="text-center text-2xl">Loading...</div>;
@@ -59,7 +63,7 @@ export default function Home() {
       <hr className="mx-auto my-10 w-96 border-2" />
       <div className="mx-10 justify-around md:flex">
         <div className="flex flex-1 justify-center md:ml-44">
-          <Pagination />
+          <Pagination changePage={handlePage} page={page} />
         </div>
         <div className="flex items-center justify-center gap-2">
           <OfferButton text={"NEW"} />

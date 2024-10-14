@@ -6,7 +6,8 @@ const ProductPage = () => {
   const [quantity, setQuantity] = useState(1);
   const [searchParams] = useSearchParams();
   const productId = searchParams.get("id");
-  const [product, setProduct] = useState(null); // null по умолчанию для проверки загрузки
+  const [product, setProduct] = useState(null);
+  const [products, setProducts] = useState(null);
 
   const handleQuantityChange = (e) => {
     setQuantity(Math.max(1, parseInt(e.target.value) || 1));
@@ -31,9 +32,29 @@ const ProductPage = () => {
     setProduct(newProduct);
     console.log(newProduct);
   };
+  const fetchProducts = async () => {
+    const response = await fetch(
+      `http://localhost:8080/api/v1/products?page=0&limit=6`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch product");
+    }
+
+    const newProduct = await response.json();
+    setProducts(newProduct.content);
+    console.log(newProduct);
+  };
 
   useEffect(() => {
     fetchProduct();
+    fetchProducts();
   }, [productId]);
 
   if (!product) {
@@ -112,17 +133,19 @@ const ProductPage = () => {
           </button>
         </div>
       </div>
-      <h1 className="mt-10 text-center text-2xl">Otros productos</h1>
-      {/* <div className="m-4 mt-6 xl:grid xl:grid-cols-3">
+      <h1 className="mt-20 text-center text-2xl">Otros productos</h1>
+      <hr className="mx-auto my-10 w-96 border-2" />
+      <div className="m-4 mt-6 xl:grid xl:grid-cols-3">
         {products.map((product) => (
           <Card
             key={product.id}
             name={product.name}
             price={product.price}
             id={product.id}
+            img={product.imageUrl1}
           />
         ))}
-      </div> */}
+      </div>
     </div>
   );
 };
