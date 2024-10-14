@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [products, setProducts] = useState(null);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const handlePage = (newPage) => {
     setPage(newPage);
   };
@@ -41,12 +41,12 @@ export default function Home() {
 
   return (
     <>
-      <h1 className="mx-auto my-10 w-[900px] scroll-m-20 text-center text-4xl font-extrabold tracking-tight lg:text-5xl">
+      <h1 className="mx-auto my-16 w-[900px] scroll-m-20 text-center text-4xl font-extrabold tracking-tight lg:text-5xl">
         Your Best <span className="text-yellow-900"> Comics Shop</span>
       </h1>
       <Carousel />
       <hr className="mx-auto my-10 w-96 border-2" />
-      <h2 className="scroll-m-20 pb-2 text-center text-3xl font-semibold tracking-tight first:mt-0">
+      <h2 className="scroll-m-20 text-center text-3xl font-extralight first:mt-0">
         All Products
       </h2>
       <div className="m-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:m-10 xl:grid-cols-3 2xl:grid-cols-4">
