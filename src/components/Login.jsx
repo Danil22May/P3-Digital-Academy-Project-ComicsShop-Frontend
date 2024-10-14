@@ -1,13 +1,23 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 function Login() {
   const [status, changeStatus] = useState(1);
+  const audioRef = useRef(
+    "https://us-tuna-sounds-files.voicemod.net/609379db-8438-4c15-bee3-0daa4b12a03b-1660380533038.mp3",
+  );
+  const playVoice = () => {
+    audioRef.current.play();
+  };
   return (
     <div className="flex">
       <img
         src="https://w0.peakpx.com/wallpaper/67/332/HD-wallpaper-the-batman-art-batman-comics-dc.jpg"
         className="h-screen w-[58%] object-cover object-top"
       />
+      <audio
+        ref={audioRef}
+        src="https://us-tuna-sounds-files.voicemod.net/609379db-8438-4c15-bee3-0daa4b12a03b-1660380533038.mp3"
+      ></audio>
       <div className="flex flex-1 items-center justify-center border-l-4 border-gray-900 bg-gradient-to-tl from-slate-900 to-yellow-800">
         <div className="flex w-96 flex-col gap-3 rounded border-2 border-white/10 bg-white/20 p-5 backdrop-blur-lg">
           {status ? (
@@ -23,7 +33,10 @@ function Login() {
                 type="text"
                 className="w-60 rounded border-2 border-white/40 bg-white/40 tracking-widest text-gray-900"
               />
-              <button className="my-2 w-36 border-2 border-white/40 bg-white/25 p-2 font-thin tracking-wider text-white/70 transition-all hover:bg-white/10">
+              <button
+                onClick={playVoice}
+                className="my-2 w-36 border-2 border-white/40 bg-white/25 p-2 font-thin tracking-wider text-white/70 transition-all hover:bg-white/10"
+              >
                 Login
               </button>
             </>

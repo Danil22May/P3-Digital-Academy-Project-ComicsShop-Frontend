@@ -72,7 +72,7 @@ const UploadForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mx-auto max-w-md rounded-lg border border-gray-300 bg-white p-4 text-gray-700 shadow-lg"
+      className="max-w-md rounded-lg border border-gray-300 bg-white p-4 text-gray-700 shadow-lg"
     >
       <h2 className="inter mb-4 text-xl font-bold text-gray-600">
         Gestion de Productos
