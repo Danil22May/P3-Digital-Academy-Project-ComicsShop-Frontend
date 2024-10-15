@@ -57,6 +57,7 @@ export default function Home() {
             price={product.price}
             id={product.id}
             img={product.imageUrl1}
+            isAdmin={false}
           />
         ))}
       </div>

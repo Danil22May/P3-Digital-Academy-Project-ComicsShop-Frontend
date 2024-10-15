@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 export default function Pagination({ changePage, page }) {
   const sendPage = (newPage) => {
     changePage(newPage);
   };
 
-  const count = [1, 2, 3];
+  const count = [1, 2, 3, 4, 5];
   return (
     <>
       <button

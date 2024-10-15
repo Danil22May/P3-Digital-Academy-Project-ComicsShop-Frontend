@@ -1,8 +1,9 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
 import { storage } from "../firebase.jsx";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
-const UploadForm = () => {
+const UploadForm = ({ productId }) => {
   const [created, setCreated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -16,6 +17,25 @@ const UploadForm = () => {
   });
 
   const categories = ["DC", "MARVEL", "MANGA"];
+
+  useEffect(() => {
+    if (productId) {
+      fetch(`http://localhost:8080/api/v1/product?id=${productId}`)
+        .then((response) => response.json())
+        .then((product) => {
+          setFormData({
+            name: product.name,
+            description: product.description,
+            category: product.category,
+            price: product.price,
+            stars: product.stars,
+            image1: null,
+            image2: null,
+          });
+        })
+        .catch((error) => console.error("Error fetching product:", error));
+    }
+  }, [productId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,8 +57,8 @@ const UploadForm = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    const image1URL = await uploadImage(formData.image1);
-    const image2URL = await uploadImage(formData.image2);
+    let image1URL = formData.image1 ? await uploadImage(formData.image1) : null;
+    let image2URL = formData.image2 ? await uploadImage(formData.image2) : null;
 
     const productData = {
       name: formData.name,
@@ -46,12 +66,17 @@ const UploadForm = () => {
       category: formData.category,
       stars: formData.stars,
       price: parseFloat(formData.price),
-      imageUrl1: image1URL,
-      imageUrl2: image2URL,
+      imageUrl1: image1URL || "undefined",
+      imageUrl2: image2URL || undefined,
     };
 
-    fetch("http://localhost:8080/api/v1/product", {
-      method: "POST",
+    const method = productId ? "PUT" : "POST";
+    const url = productId
+      ? `http://localhost:8080/api/v1/product?id=${productId}`
+      : "http://localhost:8080/api/v1/product";
+
+    fetch(url, {
+      method: method,
       headers: {
         "Content-Type": "application/json",
       },
@@ -59,7 +84,7 @@ const UploadForm = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Product created:", data);
+        console.log(productId ? "Product updated:" : "Product created:", data);
         setIsLoading(false);
         setCreated(true);
         setTimeout(() => {
@@ -75,7 +100,7 @@ const UploadForm = () => {
       className="max-w-md rounded-lg border border-gray-300 bg-white p-4 text-gray-700 shadow-lg"
     >
       <h2 className="inter mb-4 text-xl font-bold text-gray-600">
-        Gestion de Productos
+        {productId ? "Edit Product" : "Add Product"}
       </h2>
 
       <input
@@ -138,7 +163,6 @@ const UploadForm = () => {
         name="image1"
         accept="image/*"
         onChange={handleChange}
-        required
         className="mb-4"
       />
       <input
@@ -153,11 +177,11 @@ const UploadForm = () => {
         type="submit"
         className="my-2 rounded bg-blue-400 p-2 text-white transition duration-200 hover:bg-blue-600"
       >
-        Upload Product
+        {productId ? "Update Product" : "Upload Product"}
       </button>
       {created ? (
         <h1 className="p-7 text-center text-2xl font-semibold text-green-600">
-          Product created
+          {productId ? "Product updated" : "Product created"}
         </h1>
       ) : null}
       {isLoading ? (
