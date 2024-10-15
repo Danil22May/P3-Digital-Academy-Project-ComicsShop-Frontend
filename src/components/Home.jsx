@@ -35,10 +35,6 @@ export default function Home() {
     fetchProduct().then((result) => console.log(result));
   }, [page]);
 
-  if (!products) {
-    return <div className="text-center text-2xl">Loading...</div>;
-  }
-
   return (
     <>
       <h1 className="mx-auto my-16 w-[900px] scroll-m-20 text-center text-4xl font-extrabold tracking-tight lg:text-5xl">
@@ -50,7 +46,28 @@ export default function Home() {
         All Products
       </h2>
       <div className="m-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:m-10 xl:grid-cols-3 2xl:grid-cols-4">
-        {products.map((product) => (
+        {!products
+          ? [...Array(8)].map((_, i) => (
+              <div
+                className="h-64 w-96 animate-pulse rounded-xl border-4 bg-white"
+                key={i}
+              >
+                <div className="m-5 h-12 w-28 rounded-xl bg-gray-300"></div>
+                <div className="mx-5 my-2 h-6 w-24 rounded-xl bg-gray-300"></div>
+                <div className="mx-5 my-2 h-6 w-16 rounded-xl bg-gray-300"></div>
+              </div>
+            ))
+          : products.map((product) => (
+              <Card
+                key={product.id}
+                name={product.name}
+                price={product.price}
+                id={product.id}
+                img={product.imageUrl1}
+                isAdmin={false}
+              />
+            ))}
+        {/* {products.map((product) => (
           <Card
             key={product.id}
             name={product.name}
@@ -59,7 +76,7 @@ export default function Home() {
             img={product.imageUrl1}
             isAdmin={false}
           />
-        ))}
+        ))} */}
       </div>
       <hr className="mx-auto my-10 w-96 border-2" />
       <div className="mx-10 justify-around md:flex">

@@ -39,12 +39,12 @@ export default function Card({
             </>
           ) : (
             <>
-              <button className="rounded-xl border border-blue-400 p-2 text-xs text-blue-400 transition-colors hover:bg-blue-400 hover:text-white md:text-sm">
+              <button className="rounded border border-blue-400 p-2 text-xs text-blue-400 transition-colors hover:bg-blue-400 hover:text-white md:text-sm">
                 Add to Cart
               </button>
               <a
                 href={"/product?id=" + id}
-                className="pointer rounded-xl border border-yellow-400 p-2 text-yellow-400 transition-colors hover:bg-yellow-400 hover:text-white"
+                className="pointer rounded border border-yellow-400 p-2 text-yellow-400 transition-colors hover:bg-yellow-400 hover:text-white"
               >
                 More
               </a>
