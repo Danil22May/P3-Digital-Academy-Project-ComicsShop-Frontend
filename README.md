@@ -70,10 +70,6 @@ The app will be available at `http://localhost:5173/`.
 
 - **Product Listing**: Products are fetched from the backend API and displayed on the homepage.
 
-### Shopping Cart
-
-- Users can add products to their cart, remove items, and proceed to checkout. Cart data is stored locally in state and sent to the backend when the order is placed.
-
 ### API Integration
 
 The frontend communicates with the backend through REST API calls using the `fetch` function. Examples of the key API calls:
