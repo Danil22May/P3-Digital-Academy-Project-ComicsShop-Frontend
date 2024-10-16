@@ -4,6 +4,8 @@
 
 This is the frontend of an e-commerce web application where users can browse products, register, log in, add products. It is built using React and communicates with the backend API for data such as user authentication, products, and CRUD operations
 
+![Hero Image](./public/readme.jpg)
+
 ## Features
 
 - **User Authentication**: Registration and login form with validation.
