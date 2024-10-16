@@ -1,7 +1,3 @@
-Here's the README for the frontend part of your e-commerce project:
-
----
-
 # Comics Shop Frontend
 
 ## Project Overview
